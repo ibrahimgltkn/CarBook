@@ -5,7 +5,15 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{EB833CD8-5082-484C-B7D2-7D34304087CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarBook.Domain", "Core\CarBook.Domain\CarBook.Domain.csproj", "{1905E616-2A92-4224-BB10-527C8C247C49}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarBook.Domain", "Core\CarBook.Domain\CarBook.Domain.csproj", "{1905E616-2A92-4224-BB10-527C8C247C49}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{695B5C0C-2D10-4824-BDD2-CD71304DA852}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarBook.Persistence", "Infrastructure\CarBook.Persistence\CarBook.Persistence.csproj", "{1758FEC8-1903-4FFD-9764-ED59067A1615}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{067D05A5-A4B1-4EDE-861B-CD91D46E80A0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarBook.WebApi", "Presentation\CarBook.WebApi\CarBook.WebApi.csproj", "{DAF1809A-646F-44DF-8947-6F595EE2C9FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,12 +25,22 @@ Global
 		{1905E616-2A92-4224-BB10-527C8C247C49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1905E616-2A92-4224-BB10-527C8C247C49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1905E616-2A92-4224-BB10-527C8C247C49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1758FEC8-1903-4FFD-9764-ED59067A1615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1758FEC8-1903-4FFD-9764-ED59067A1615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1758FEC8-1903-4FFD-9764-ED59067A1615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1758FEC8-1903-4FFD-9764-ED59067A1615}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAF1809A-646F-44DF-8947-6F595EE2C9FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAF1809A-646F-44DF-8947-6F595EE2C9FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAF1809A-646F-44DF-8947-6F595EE2C9FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAF1809A-646F-44DF-8947-6F595EE2C9FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{1905E616-2A92-4224-BB10-527C8C247C49} = {EB833CD8-5082-484C-B7D2-7D34304087CF}
+		{1758FEC8-1903-4FFD-9764-ED59067A1615} = {695B5C0C-2D10-4824-BDD2-CD71304DA852}
+		{DAF1809A-646F-44DF-8947-6F595EE2C9FD} = {067D05A5-A4B1-4EDE-861B-CD91D46E80A0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9DDC46A8-480C-45AB-9F79-2862CF1691DC}
