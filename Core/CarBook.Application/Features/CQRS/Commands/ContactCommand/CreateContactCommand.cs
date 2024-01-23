@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarBook.Domain.Entities
+namespace CarBook.Application.Features.CQRS.Commands.ContactCommand
 {
-	public class Contact
-	{
-        public int ContactID { get; set; }
+    public class CreateContactCommand
+    {
         public string Name { get; set; }
         public string Email { get; set; }
         public string Subject { get; set; }
