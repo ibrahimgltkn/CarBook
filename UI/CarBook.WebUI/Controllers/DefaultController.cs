@@ -2,7 +2,7 @@
 
 namespace CarBook.WebUI.Controllers
 {
-    public class ServiceController : Controller
+    public class DefaultController : Controller
     {
         public IActionResult Index()
         {
