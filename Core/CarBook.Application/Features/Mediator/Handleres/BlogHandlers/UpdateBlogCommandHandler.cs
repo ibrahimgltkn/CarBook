@@ -25,7 +25,6 @@ namespace CarBook.Application.Features.Mediator.Handleres.BlogHandlers
             values.AuthorID = request.AuthorID;
             values.CoverImageUrl = request.CoverImageUrl;
             values.Title = request.Title;
-            values.CreatedDate = request.CreatedDate;
             values.CategoryID = request.CategoryID;
             await _repository.UpdateAsync(values);
         }

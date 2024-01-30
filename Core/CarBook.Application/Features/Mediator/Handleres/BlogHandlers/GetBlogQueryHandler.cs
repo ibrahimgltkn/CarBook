@@ -26,10 +26,10 @@ namespace CarBook.Application.Features.Mediator.Handleres.BlogHandlers
             return values.Select(x => new GetBlogQueryResult
             {
                 Title = x.Title,
-                CreatedDate = x.CreatedDate,
                 CoverImageUrl = x.CoverImageUrl,
                 AuthorID = x.AuthorID,
                 CategoryID = x.CategoryID,
+                CreatedDate = x.CreatedDate,
                 BlogID = x.BlogID
             }).ToList();
         }

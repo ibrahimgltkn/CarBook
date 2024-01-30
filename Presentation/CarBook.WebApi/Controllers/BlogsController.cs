@@ -51,5 +51,12 @@ namespace CarBook.WebApi.Controllers
             await _mediator.Send(command);
             return Ok("Blog başarıyla güncellendi.");
         }
+
+        [HttpGet("GetLastThreeBlogsWithAuthorsList")]
+        public async Task<IActionResult> GetLastThreeBlogsWithAuthorsList()
+        {
+            var values = await _mediator.Send(new GetLastThreeBlogsWithAuthorsQuery());
+            return Ok(values);
+        }
     }
 }
