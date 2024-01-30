@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace CarBook.Application.Features.Mediator.Handleres.LocationHandlers
 {
-    public class RemoveAuthorCommandHandler : IRequestHandler<RemoveLocationCommand>
+    public class RemoveLocationCommandHandler : IRequestHandler<RemoveLocationCommand>
     {
         private readonly IRepository<Location> _repository;
 
-        public RemoveAuthorCommandHandler(IRepository<Location> repository)
+        public RemoveLocationCommandHandler(IRepository<Location> repository)
         {
             _repository = repository;
         }
