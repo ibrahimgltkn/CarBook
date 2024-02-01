@@ -6,6 +6,8 @@ namespace CarBook.WebUI.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.vBreadCrumb = "Hizmetler";
+            ViewBag.vTitle = "Hizmetlerimiz";
             return View();
         }
     }
