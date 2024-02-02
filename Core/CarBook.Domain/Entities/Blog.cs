@@ -16,5 +16,6 @@ namespace CarBook.Domain.Entities
         public DateTime CreatedDate { get; set; } = DateTime.Now;
         public int CategoryID { get; set; }
         public Category Category { get; set; }
+        public string Description { get; set; }
     }
 }

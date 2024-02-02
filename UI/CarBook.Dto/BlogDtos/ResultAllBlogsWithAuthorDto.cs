@@ -1,13 +1,12 @@
-﻿using CarBook.Domain.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CarBook.Application.Features.Mediator.Results.BlogResults
+namespace CarBook.Dto.BlogDtos
 {
-    public class GetAllBlogWithAuthorQueryResult
+    public class ResultAllBlogsWithAuthorDto
     {
         public int BlogID { get; set; }
         public string Title { get; set; }
@@ -15,8 +14,9 @@ namespace CarBook.Application.Features.Mediator.Results.BlogResults
         public string CategoryName { get; set; }
         public int AuthorID { get; set; }
         public string CoverImageUrl { get; set; }
-        public DateTime CreatedDate { get; set; } = DateTime.Now;
+        public DateTime CreatedDate { get; set; }
         public int CategoryID { get; set; }
         public string Description { get; set; }
+
     }
 }
