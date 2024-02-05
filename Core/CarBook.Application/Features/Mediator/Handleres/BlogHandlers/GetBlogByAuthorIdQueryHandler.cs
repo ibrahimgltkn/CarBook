@@ -10,28 +10,23 @@ using System.Threading.Tasks;
 
 namespace CarBook.Application.Features.Mediator.Handleres.BlogHandlers
 {
-    public class GetAllBlogWithAuthorQueryHandler : IRequestHandler<GetAllBlogWithAuthorQuery, List<GetAllBlogWithAuthorQueryResult>>
+    public class GetBlogByAuthorIdQueryHandler : IRequestHandler<GetBlogByAuthorIdQuery, List<GetBlogByAuthorIdQueryResult>>
     {
         private readonly IBlogRepository _repository;
 
-        public GetAllBlogWithAuthorQueryHandler(IBlogRepository repository)
+        public GetBlogByAuthorIdQueryHandler(IBlogRepository repository)
         {
             _repository = repository;
         }
 
-        public async Task<List<GetAllBlogWithAuthorQueryResult>> Handle(GetAllBlogWithAuthorQuery request, CancellationToken cancellationToken)
+        public async Task<List<GetBlogByAuthorIdQueryResult>> Handle(GetBlogByAuthorIdQuery request, CancellationToken cancellationToken)
         {
-            var values = _repository.GetAllBlogsWithAuthors();
-            return values.Select(x => new GetAllBlogWithAuthorQueryResult
+            var values = _repository.GetBlogByAuthorId(request.Id);
+            return values.Select(x => new GetBlogByAuthorIdQueryResult
             {
                 AuthorID = x.AuthorID,
                 BlogID = x.BlogID,
-                CategoryID = x.CategoryID,
-                CoverImageUrl = x.CoverImageUrl,
-                Title = x.Title,
-                CreatedDate = x.CreatedDate,
                 AuthorName = x.Author.Name,
-                Description = x.Author.Description,
                 AuthorDescription = x.Author.Description,
                 AuthorImageUrl = x.Author.ImageUrl
             }).ToList();
