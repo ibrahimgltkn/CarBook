@@ -51,7 +51,7 @@ namespace CarBook.WebApi.Controllers
 			return Ok("Marka eklendi.");
 		}
 
-		[HttpDelete]
+		[HttpDelete("{id}")]
 		public async Task<IActionResult> RemoveBrand(int id)
 		{
 			await _removeBrandCommandHandler.Handle(new RemoveBrandCommand(id));
