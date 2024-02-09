@@ -73,7 +73,7 @@ namespace CarBook.WebUI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateFeature(UpdateBrandDto updateBrandDto)
+        public async Task<IActionResult> UpdateBrand(UpdateBrandDto updateBrandDto)
         {
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateBrandDto);
