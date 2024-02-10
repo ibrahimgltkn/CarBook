@@ -1,0 +1,41 @@
+﻿@model UpdateAboutDto
+
+@{
+    ViewData["Title"] = "UpdateAbout";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Yeni About Bilgisi Girişi</h4>
+                    <p class="card-subtitle mb-4">
+                        About alanına veri girşini aşağıdan yapabilirsiniz. Sadece 1 tane About verisi kalmalıdır.
+                    </p>
+                    <form method="post">
+                        <input type="hidden" asp-for="aboutID" />
+                        <div class="form-group">
+                            <label for="exampleInputTitle">Başlık</label>
+                            <input type="text" class="form-control" id="exampleInputTitle" asp-for="title" placeholder="Başlık Girişi Yapınız..">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputDescription">Açıklama</label>
+                            <textarea class="form-control" rows="5" id="exampleInputDescription" asp-for="description" placeholder="Açıklama Girişi Yapınız.."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputimageUrl">Video Açıklama</label>
+                            <input type="text" class="form-control" id="exampleInputimageUrl" asp-for="imageUrl" placeholder="Hakkımda Kapak Fotoğraf Linki Girişi Yapınız..">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">Hakkımda Bilgisini Güncelle</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
