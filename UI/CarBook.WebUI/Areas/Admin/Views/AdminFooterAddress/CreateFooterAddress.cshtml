@@ -1,0 +1,44 @@
+﻿@model CreateFooterAddressDto
+
+@{
+    ViewData["Title"] = "CreateFooterAddress";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Yeni Adres Bilgisi Girişi</h4>
+                    <p class="card-subtitle mb-4">
+                        Adres alanına veri girşini aşağıdan yapabilirsiniz.
+                    </p>
+                    <form method="post">
+
+                        <div class="form-group">
+                            <label for="exampleInputAddress">Adres</label>
+                            <input type="text" class="form-control" id="exampleInputAddress" asp-for="Address" placeholder="Adres Girişi Yapınız..">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputDescription">Açıklama</label>
+                            <input type="text" class="form-control" id="exampleInputDescription" asp-for="Description" placeholder="Açıklama Girişi Yapınız..">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="exampleInputPhone">Telefon</label>
+                            <input type="tel" class="form-control" id="exampleInputPhone" asp-for="Phone" placeholder="Telefon Girişi Yapınız..">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail">Email</label>
+                            <input type="tel" class="form-control" id="exampleInputEmail" asp-for="Email" placeholder="Email Girişi Yapınız..">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">İletişim Bilgisini Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

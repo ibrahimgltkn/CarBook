@@ -1,0 +1,31 @@
+﻿@model CreateLocationDto
+
+@{
+    ViewData["Title"] = "CreateLocation";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Lokasyon Veri Girişi Alanı</h4>
+                    <p class="card-subtitle mb-4">
+                        Location alanına veri girşini aşağıdan yapabilirsiniz. Sadece 1 tane Location verisi kalmalıdır.
+                    </p>
+                    <form method="post">
+
+                        <div class="form-group">
+                            <label for="exampleInputName">Lokasyon Adı</label>
+                            <input type="text" class="form-control" id="exampleInputName" asp-for="Name" placeholder="Başlık Girişi Yapınız..">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">Lokasyon Bilgisini Kaydet</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
