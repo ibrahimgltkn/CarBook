@@ -47,7 +47,7 @@ namespace CarBook.WebApi.Controllers
         [HttpGet("GetBrandCount")]
         public IActionResult GetBrandCount()
         {
-            var values = _mediator.Send(new GetCarCountQuery());
+            var values = _mediator.Send(new GetBrandCountQuery());
             return Ok(values.Result);
         }
 
