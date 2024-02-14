@@ -164,8 +164,55 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
                 ViewBag.carCountByFuelElectric = values12.carCountByFuelElectric;
                 ViewBag.carCountByFuelElectricRandom = carCountByFuelElectricRandom;
             }
-            # endregion carCountByFuelElectric
+            #endregion carCountByFuelElectric
 
+            #region //CarBrandAndModelByRentPriceDailyMax
+            var responseMessage13 = await client.GetAsync("https://localhost:7208/api/Statistics/GetCarBrandAndModelByRentPriceDailyMax");
+            if (responseMessage13.IsSuccessStatusCode)
+            {
+                int CarBrandAndModelByRentPriceDailyMaxRandom = random.Next(0, 101);
+                var jsonData13 = await responseMessage13.Content.ReadAsStringAsync();
+                var values13 = JsonConvert.DeserializeObject<ResultStatisticsDto>(jsonData13);
+                ViewBag.CarBrandAndModelByRentPriceDailyMax = values13.carBrandAndModelByRentPriceDailyMax;
+                ViewBag.CarBrandAndModelByRentPriceDailyMaxRandom = CarBrandAndModelByRentPriceDailyMaxRandom;
+            }
+            #endregion CarBrandAndModelByRentPriceDailyMax
+
+            #region //CarBrandAndModelByRentPriceDailyMin
+            var responseMessage14 = await client.GetAsync("https://localhost:7208/api/Statistics/GetCarBrandAndModelByRentPriceDailyMin");
+            if (responseMessage14.IsSuccessStatusCode)
+            {
+                int CarBrandAndModelByRentPriceDailyMinRandom = random.Next(0, 101);
+                var jsonData14 = await responseMessage14.Content.ReadAsStringAsync();
+                var values14 = JsonConvert.DeserializeObject<ResultStatisticsDto>(jsonData14);
+                ViewBag.CarBrandAndModelByRentPriceDailyMin = values14.carBrandAndModelByRentPriceDailyMin;
+                ViewBag.CarBrandAndModelByRentPriceDailyMinRandom = CarBrandAndModelByRentPriceDailyMinRandom;
+            }
+            #endregion CarBrandAndModelByRentPriceDailyMin
+
+            #region //brandNameByMaxCar
+            var responseMessage15 = await client.GetAsync("https://localhost:7208/api/Statistics/GetBrandNameByMaxCar");
+            if (responseMessage15.IsSuccessStatusCode)
+            {
+                int brandNameByMaxCarRandom = random.Next(0, 101);
+                var jsonData15 = await responseMessage15.Content.ReadAsStringAsync();
+                var values15 = JsonConvert.DeserializeObject<ResultStatisticsDto>(jsonData15);
+                ViewBag.brandNameByMaxCar = values15.brandNameByMaxCar;
+                ViewBag.brandNameByMaxCarRandom = brandNameByMaxCarRandom;
+            }
+            #endregion brandNameByMaxCar
+
+            #region //blogTitleByMaxComment
+            var responseMessage16 = await client.GetAsync("https://localhost:7208/api/Statistics/GetBlogTitleByMaxComment");
+            if (responseMessage16.IsSuccessStatusCode)
+            {
+                int blogTitleByMaxCommentRandom = random.Next(0, 101);
+                var jsonData16 = await responseMessage16.Content.ReadAsStringAsync();
+                var values16 = JsonConvert.DeserializeObject<ResultStatisticsDto>(jsonData16);
+                ViewBag.blogTitleByMaxComment = values16.blogTitleByMaxComment;
+                ViewBag.blogTitleByMaxCommentRandom = blogTitleByMaxCommentRandom;
+            }
+            # endregion blogTitleByMaxComment
 
             return View();
         }

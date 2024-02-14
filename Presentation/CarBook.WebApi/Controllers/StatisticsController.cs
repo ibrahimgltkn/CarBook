@@ -124,7 +124,7 @@ namespace CarBook.WebApi.Controllers
         [HttpGet("GetCarBrandAndModelByRentPriceDailyMin")]
         public IActionResult GetCarBrandAndModelByRentPriceDailyMin()
         {
-            var values = _mediator.Send(new GetCarBrandAndModelByRentPriceDailyMaxQuery());
+            var values = _mediator.Send(new GetCarBrandAndModelByRentPriceDailyMinQuery());
             return Ok(values.Result);
         }
 
