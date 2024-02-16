@@ -38,29 +38,27 @@ namespace CarBook.Persistence.Repositories.CarPricingRepositories
             using (var command = _context.Database.GetDbConnection().CreateCommand())
             {
                 command.CommandText = "Select * From " +
-					"(Select Brands.Name +' - '+ model as Marka_Model, PricingID,Amount From CarPricings " +
+					"(Select Brands.Name +' - '+ model as Marka_Model,CoverImageUrl, PricingID,Amount From CarPricings " +
                     "Inner Join Cars On Cars.CarID = CarPricings.CarID " +
                     "Inner Join Brands On Brands.BrandID=Cars.BrandID) As SourceTable " +
-                    "Pivot (Sum(Amount) For PricingID In ([2],[3],[4],[5])) as PivotTable;";
+                    "Pivot (Sum(Amount) For PricingID In ([3],[4],[5])) as PivotTable;";
                 command.CommandType = System.Data.CommandType.Text;
                 _context.Database.OpenConnection();
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        CarPricingViewModel viewModel = new CarPricingViewModel();
-                        Enumerable.Range(1, 3).ToList().ForEach(x =>
+                        CarPricingViewModel viewModel = new CarPricingViewModel()
                         {
-                            viewModel.Model = reader[0].ToString();
-                            if (DBNull.Value.Equals(reader[x]))
+                            Model = reader["Marka_Model"].ToString(),
+                            CoverImageUrl = reader["CoverImageUrl"].ToString(),
+                            Amounts = new List<decimal>
                             {
-                                viewModel.Amounts.Add(0);
+                                Convert.ToDecimal(reader[2]),
+                                Convert.ToDecimal(reader[3]),
+                                Convert.ToDecimal(reader[4])
                             }
-                            else
-                            {
-                                viewModel.Amounts.Add(reader.GetDecimal(x));
-                            }
-                        });
+                        };
                         values.Add(viewModel);
                     }
                 }
