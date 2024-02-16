@@ -1,5 +1,6 @@
 ﻿using CarBook.Application.Interfaces.CarInterfaces;
 using CarBook.Application.Interfaces.CarPricingInterfaces;
+using CarBook.Application.ViewModels;
 using CarBook.Domain.Entities;
 using CarBook.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
@@ -24,6 +25,48 @@ namespace CarBook.Persistence.Repositories.CarPricingRepositories
         {
             var values = _context.CarPricings.Include(x => x.Car).ThenInclude(y => y.Brand).Include(x => x.Pricing).Where(z => z.PricingID == 3).ToList();
             return values;
+        }
+
+		public List<CarPricing> GetCarPricingWithTimePeriod()
+		{
+			throw new NotImplementedException();
+		}
+
+        public List<CarPricingViewModel> GetCarPricingWithTimePeriod1()
+        {
+            List<CarPricingViewModel> values = new List<CarPricingViewModel>();
+            using (var command = _context.Database.GetDbConnection().CreateCommand())
+            {
+                command.CommandText = "Select * From " +
+					"(Select Brands.Name +' - '+ model as Marka_Model, PricingID,Amount From CarPricings " +
+                    "Inner Join Cars On Cars.CarID = CarPricings.CarID " +
+                    "Inner Join Brands On Brands.BrandID=Cars.BrandID) As SourceTable " +
+                    "Pivot (Sum(Amount) For PricingID In ([2],[3],[4],[5])) as PivotTable;";
+                command.CommandType = System.Data.CommandType.Text;
+                _context.Database.OpenConnection();
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        CarPricingViewModel viewModel = new CarPricingViewModel();
+                        Enumerable.Range(1, 3).ToList().ForEach(x =>
+                        {
+                            viewModel.Model = reader[0].ToString();
+                            if (DBNull.Value.Equals(reader[x]))
+                            {
+                                viewModel.Amounts.Add(0);
+                            }
+                            else
+                            {
+                                viewModel.Amounts.Add(reader.GetDecimal(x));
+                            }
+                        });
+                        values.Add(viewModel);
+                    }
+                }
+                _context.Database.CloseConnection();
+                return values;
+            }
         }
     }
 }
