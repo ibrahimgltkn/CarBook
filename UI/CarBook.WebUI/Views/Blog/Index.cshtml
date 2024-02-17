@@ -16,7 +16,7 @@
                         </a>
                         <div class="text px-md-5 pt-4">
                             <div class="meta mb-3">
-                                <div><a href="#">@item.CreatedDate.ToShortDateString()</a></div>
+                                <div class="meta">@(((DateTime)item.CreatedDate).ToString("dd-MMM-yyy"))</div>
                                 <div><a href="#">@item.AuthorName</a></div>
                                 <div><a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a></div>
                             </div>

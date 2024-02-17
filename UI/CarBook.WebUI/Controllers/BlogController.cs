@@ -1,6 +1,9 @@
 ﻿using CarBook.Dto.BlogDtos;
+using CarBook.Dto.CommentDtos;
+using CarBook.Dto.LocationDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Text;
 
 namespace CarBook.WebUI.Controllers
 {
@@ -33,6 +36,26 @@ namespace CarBook.WebUI.Controllers
             ViewBag.vBreadCrumb = "Bloglar";
             ViewBag.vTitle = "Blog Detayı ve Yorumlar";
             ViewBag.BlogID = id;
+            return View();
+        }
+
+        [HttpGet]
+        public PartialViewResult AddComment()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddComment(CreateCommentDto createCommentDto)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var jsonData = JsonConvert.SerializeObject(createCommentDto);
+            StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var responseMessage = await client.PostAsync("https://localhost:7208/api/Comments/CreateComment1", content);
+            if (responseMessage.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index", "Default");
+            }
             return View();
         }
     }

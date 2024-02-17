@@ -9,7 +9,7 @@
             <div class="text">
                 <h3 class="heading"><a href="#">@item.Title</a></h3>
                 <div class="meta">
-                    <div><a href="#"><span class="icon-calendar"></span>@item.CreatedDate.ToShortDateString()</a></div>
+                    <div><a href="#"><span class="icon-calendar"></span>&nbsp;@(((DateTime)item.CreatedDate).ToString("dd-MMM-yyy"))</a></div>
                     <div><a href="#"><span class="icon-person"></span> @item.AuthorName</a></div>
                     <div><a href="#"><span class="icon-chat"></span> 0</a></div>
                     

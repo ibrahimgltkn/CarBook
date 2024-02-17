@@ -10,9 +10,11 @@
 
     <div class="pt-5 mt-5">
 
-        @await Component.InvokeAsync("_CommentListByBlogComponentPartial")
+        @await Component.InvokeAsync("_CommentListByBlogComponentPartial", new {id = ViewBag.BlogID})
 
-        @await Component.InvokeAsync("_AddCommentComponentPartial")
+        @* @await Component.InvokeAsync("_AddCommentComponentPartial") *@
+
+        @await Html.PartialAsync("~/Views/Blog/AddComment.cshtml", new {id = ViewBag.BlogID})
 
     </div>
 </div> 
