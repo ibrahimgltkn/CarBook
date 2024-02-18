@@ -12,5 +12,6 @@ namespace CarBook.Application.Interfaces.CarFeatureInterfaces
         List<CarFeature> GetCarFeaturesByCarID(int carID);
         void ChangeCarFeatureAvailableToFalse(int id);
         void ChangeCarFeatureAvailableToTrue(int id);
+        void CreateCarFeatureByCar(CarFeature carFeature);
     }
 }
