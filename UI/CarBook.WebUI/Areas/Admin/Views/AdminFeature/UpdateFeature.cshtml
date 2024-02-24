@@ -1,8 +1,8 @@
-﻿@model ResultCreateFeatureDto
+﻿@model ResultUpdateFeatureDto
 
 @{
-    ViewData["Title"] = "CreateFeature";
-    Layout = "~/Views/AdminLayout/Index.cshtml";
+    ViewData["Title"] = "UpdateFeature";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
 
 <div class="page-content">
@@ -10,24 +10,21 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Yeni Araç Özelliği Girişi</h4>
+                    <h4 class="card-title">Araç Özelliği Güncelleme Sayfası</h4>
                     <p class="card-subtitle mb-4">
                         Araç ile ilgili özellikleri aşağıdaki kutucuğa girebilirsiniz.
                     </p>
                     <form method="post">
-
+                        <input type="hidden" asp-for="FeatureID"/>
                         <div class="form-group">
                             <label for="exampleInputFeature">Özellik Adı</label>
                             <input type="text" class="form-control" id="exampleInputFeature" asp-for="Name" placeholder="Özellik Girişi Yapınız..">
                         </div>
 
-                        <button type="submit" class="btn btn-primary waves-effect waves-light">Araç Özelliği Kaydet</button>
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">Araç Özelliği Güncelle</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-

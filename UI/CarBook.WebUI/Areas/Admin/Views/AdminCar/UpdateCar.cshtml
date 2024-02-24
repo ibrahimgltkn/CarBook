@@ -1,19 +1,22 @@
-﻿@model ResultCreateCarDto
-
+﻿@model ResultUpdateCarDto
 @{
-    ViewData["Title"] = "CreateCar";
-    Layout = "~/Views/AdminLayout/Index.cshtml";
+    ViewData["Title"] = "UpdateCar";
+    Layout = "~/Areas/Admin/Views/AdminLayout/Index.cshtml";
 }
+
 <div class="page-content">
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Yeni Araç Girişi</h4>
-                    <p class="card-subtitle mb-4">Yeni araçları sisteme eklemenin basit yolu! Marka, model, vites tipi ve kilometre 
-                        bilgilerini girdikten sonra bilgileri kaydedin.</p>
+                    <h4 class="card-title">Araç Güncelleme Sayfası</h4>
+                    <p class="card-subtitle mb-4">
+                        Eklenen araçları sistemde güncelemenin basit yolu! Marka, model, vites tipi ve kilometre
+                        bilgilerini güncelledikten sonra bilgileri kaydedin.
+                    </p>
 
                     <form method="post">
+                        <input type="hidden" asp-for="CarID" />
                         <div class="form-group">
                             <label for="exampleInputBrand1">Marka</label>
                             @Html.DropDownListFor(x =>x.BrandID,(List<SelectListItem>)ViewBag.Brand,new {@class="form-control"})
@@ -50,7 +53,7 @@
                             <label for="exampleInputBıgImageUrl">Büyük Kapak Fotoğrafı</label>
                             <input type="text" class="form-control" id="exampleInputBıgImageUrl" asp-for="BıgImageUrl" placeholder="Araç Detayında Gözükecek Fotoğraf Linki..">
                         </div>
-                        <button type="submit" class="btn btn-primary waves-effect waves-light">Araç Kaydet</button>
+                        <button type="submit" class="btn btn-primary waves-effect waves-light">Araç Güncelle</button>
                     </form>
 
                 </div>
@@ -58,5 +61,4 @@
         </div>
     </div>
 </div>
-
 

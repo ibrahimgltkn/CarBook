@@ -1,48 +1,50 @@
 ﻿using CarBook.Dto.BrandDtos;
-using CarBook.Dto.CarDtos;
-using CarBook.Dto.FeatureDtos;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System.Text;
 
-namespace CarBook.WebUI.Controllers
+namespace CarBook.WebUI.Areas.Admin.Controllers
 {
-    public class AdminFeatureController : Controller
+    [Route("/Admin/AdminBrand")]
+    [Area("Admin")]
+    public class AdminBrandController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public AdminFeatureController(IHttpClientFactory httpClientFactory)
+        public AdminBrandController(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
 
+        [Route("Index")]
         public async Task<IActionResult> Index()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7208/api/Features/");
+            var responseMessage = await client.GetAsync("https://localhost:7208/api/Brands/");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultFeatureDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultBrandDto>>(jsonData);
                 return View(values);
             }
             return View();
         }
 
+        [Route("CreateBrand")]
         [HttpGet]
-        public IActionResult CreateFeature()
+        public IActionResult CreateBrand()
         {
             return View();
         }
 
+        [Route("CreateBrand")]
         [HttpPost]
-        public async Task<IActionResult> CreateFeature(ResultCreateFeatureDto resultCreateFeatureDto )
+        public async Task<IActionResult> CreateBrand(CreateBrandDto createBrandDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(resultCreateFeatureDto);
+            var jsonData = JsonConvert.SerializeObject(createBrandDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:7208/api/Features", content);
+            var responseMessage = await client.PostAsync("https://localhost:7208/api/Brands/", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -50,10 +52,12 @@ namespace CarBook.WebUI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> RemoveFeature(int id)
+
+        [Route("RemoveBrand/{id}")]
+        public async Task<IActionResult> RemoveBrand(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:7208/api/Features/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:7208/api/Brands/" + id);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
@@ -61,26 +65,28 @@ namespace CarBook.WebUI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> UpdateFeature(int id)
+        [Route("UpdateBrand/{id}")]
+        public async Task<IActionResult> UpdateBrand(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:7208/api/Features/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:7208/api/Brands/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<ResultUpdateFeatureDto>(jsonData);
+                var values = JsonConvert.DeserializeObject<UpdateBrandDto>(jsonData);
                 return View(values);
             }
             return View();
         }
 
+        [Route("UpdateBrand/{id}")]
         [HttpPost]
-        public async Task<IActionResult> UpdateFeature(ResultUpdateFeatureDto resultUpdateFeatureDto)
+        public async Task<IActionResult> UpdateBrand(UpdateBrandDto updateBrandDto)
         {
             var client = _httpClientFactory.CreateClient();
-            var jsonData = JsonConvert.SerializeObject(resultUpdateFeatureDto);
+            var jsonData = JsonConvert.SerializeObject(updateBrandDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:7208/api/Features/", content);
+            var responseMessage = await client.PutAsync("https://localhost:7208/api/Brands/", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index");
