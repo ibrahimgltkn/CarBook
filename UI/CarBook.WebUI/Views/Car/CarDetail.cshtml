@@ -3,8 +3,6 @@
     Layout = "~/Views/UILayout/Index.cshtml";
 }
 
-
-
 <section class="ftco-section ftco-car-details">
     <div class="container">
         @await Component.InvokeAsync("_CarDetailMainCarFutureComponentPartial" , new{id=ViewBag.CarID})

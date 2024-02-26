@@ -1,4 +1,5 @@
 ﻿using CarBook.Dto.LocationDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
@@ -6,6 +7,7 @@ using System.Net.Http.Headers;
 
 namespace CarBook.WebUI.Controllers
 {
+    //[Authorize(Roles = "admin")]
     public class DefaultController : Controller
     {
         private readonly IHttpClientFactory _httpClientFactory;
@@ -18,23 +20,19 @@ namespace CarBook.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var token = User.Claims.FirstOrDefault(x => x.Type == "carbooktoken")?.Value;
-            if (token != null)
-            {
-                var client = _httpClientFactory.CreateClient();
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var responseMessage = await client.GetAsync("https://localhost:7208/api/Locations");
 
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData);
-                List<SelectListItem> valuesLocation = (from x in values
-                                                select new SelectListItem
-                                                {
-                                                    Text = x.Name,
-                                                    Value = x.LocationID.ToString()
-                                                }).ToList();
-                ViewBag.Location = valuesLocation;
-            }
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync("https://localhost:7208/api/Locations");
+
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData);
+            List<SelectListItem> valuesLocation = (from x in values
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.Name,
+                                                       Value = x.LocationID.ToString()
+                                                   }).ToList();
+            ViewBag.Location = valuesLocation;
             return View();
         }
 

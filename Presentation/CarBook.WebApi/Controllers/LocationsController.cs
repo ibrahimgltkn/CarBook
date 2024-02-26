@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CarBook.WebApi.Controllers
 {
-    [Authorize(Roles ="admin")]
+
     [Route("api/[controller]")]
     [ApiController]
     public class LocationsController : ControllerBase

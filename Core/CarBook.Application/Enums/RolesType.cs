@@ -9,7 +9,6 @@ namespace CarBook.Application.Enums
     public enum RolesType
     {
         admin = 1,
-        member = 2,
-        manager = 3
+        writer = 2
     }
 }

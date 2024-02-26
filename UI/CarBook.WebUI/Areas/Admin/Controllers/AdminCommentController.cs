@@ -1,10 +1,12 @@
 ﻿using CarBook.Dto.BlogDtos;
 using CarBook.Dto.CommentDtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
 namespace CarBook.WebUI.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     [Route("/Admin/AdminComment")]
     [Area("Admin")]
     public class AdminCommentController : Controller
