@@ -2,6 +2,7 @@
 using CarBook.Dto.CarPricingDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using X.PagedList;
 
 namespace CarBook.WebUI.Controllers
 {
@@ -14,7 +15,7 @@ namespace CarBook.WebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             ViewBag.vBreadCrumb = "Araçlarımız";
             ViewBag.vTitle = "Aracınızı Seçiniz";
@@ -23,7 +24,7 @@ namespace CarBook.WebUI.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultCarPricingWithCarDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultCarPricingWithCarDto>>(jsonData).ToPagedList(page,1);
                 return View(values);
             }
             return View();
