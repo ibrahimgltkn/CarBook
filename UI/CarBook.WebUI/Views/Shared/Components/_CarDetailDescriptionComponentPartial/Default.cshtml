@@ -1,5 +1,12 @@
 ﻿@model ResultCarDescriptionByCarIdDto
 
 <div class="tab-pane fade" id="pills-manufacturer" role="tabpanel" aria-labelledby="pills-manufacturer-tab">
-    <p>@Model.Details</p>
+    @if (Model.Details == null)
+    {
+        <p class="alert alert-warning">Araçla ilgili henüz açıklama girişi yapılmamış.</p>
+    }
+    else
+    {
+        <p>@Model.Details</p>
+    }
 </div>

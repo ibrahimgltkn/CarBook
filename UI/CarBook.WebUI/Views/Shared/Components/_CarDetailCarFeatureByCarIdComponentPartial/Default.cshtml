@@ -2,17 +2,17 @@
 
 <div class="tab-pane fade show active" id="pills-description" role="tabpanel" aria-labelledby="pills-description-tab">
 	<div class="row">
-		<div class="col-md-4">
-			<ul class="features">
+		<div class="col-md-12">
+			<ul class="features d-flex flex-wrap">
 				@foreach (var item in Model)
 				{
 					if (item.Available == true)
 					{
-						<li class="check"><span class="ion-ios-checkmark"></span>@item.FeatureName</li>
+						<li class="check w-25" style="text-wrap: nowrap; width: 25%; box-sizing: border-box;padding: 10px;"><span class="ion-ios-checkmark"></span>@item.FeatureName</li>
 					}
 					else
 					{
-						<li class="remove"><span class="ion-ios-checkmark"></span>@item.FeatureName</li>
+						<li class="remove w-25" style="text-wrap: nowrap; width: 25%; box-sizing: border-box;padding: 10px;"><span class="ion-ios-checkmark"></span>@item.FeatureName</li>
 					}
 				}
 			</ul>
