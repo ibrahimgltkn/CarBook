@@ -1,4 +1,8 @@
-﻿@model List<ResultCommentDto>
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Common;
+@using X.PagedList.Mvc.Core;
+
+@model IPagedList<ResultCommentDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -34,6 +38,10 @@
                                 </div>
                             </div>
                         }
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index",new{page}),
+                        new PagedListRenderOptionsBase{LiElementClasses = new string[] { "page-item" },PageClasses = new string[] { "page-link" },Display = PagedListDisplayMode.IfNeeded})
                     </div>
                 </div>
             </div>

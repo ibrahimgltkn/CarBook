@@ -1,4 +1,8 @@
-﻿@model List<ResultAuthorDto>
+﻿@using X.PagedList;
+@using X.PagedList.Mvc.Common;
+@using X.PagedList.Mvc.Core;
+
+@model IPagedList<ResultAuthorDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -46,6 +50,10 @@
                                 </tbody>
                             </table>
                             <a href="/Admin/AdminAuthor/CreateAuthor/" class="btn btn-outline-primary">Yeni Yazar Girişi</a>
+                            <div class="d-flex justify-content-center">
+                                @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index",new{page}),
+                                new PagedListRenderOptionsBase{LiElementClasses = new string[] { "page-item" },PageClasses = new string[] { "page-link" },Display = PagedListDisplayMode.IfNeeded})
+                            </div>
                         </div>
                     </div>
                 </div>

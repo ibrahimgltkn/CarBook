@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
 using System.Text;
+using X.PagedList;
 
 namespace CarBook.WebUI.Areas.Admin.Controllers
 {
@@ -20,7 +21,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         }
 
         [Route("Index")]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             var token = User.Claims.FirstOrDefault(x => x.Type == "carbooktoken")?.Value;
             if (token != null)
@@ -31,7 +32,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                    var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData);
+                    var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData).ToPagedList(page,10);
                     return View(values);
                 }
             }

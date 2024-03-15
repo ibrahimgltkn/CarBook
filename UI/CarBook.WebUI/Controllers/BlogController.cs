@@ -1,9 +1,9 @@
 ﻿using CarBook.Dto.BlogDtos;
 using CarBook.Dto.CommentDtos;
-using CarBook.Dto.LocationDtos;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using System.Text;
+using X.PagedList;
 
 namespace CarBook.WebUI.Controllers
 {
@@ -16,7 +16,7 @@ namespace CarBook.WebUI.Controllers
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1)
         {
             ViewBag.vBreadCrumb = "Bloglar";
             ViewBag.vTitle = "Yazarlarımızın Blogları";
@@ -25,7 +25,7 @@ namespace CarBook.WebUI.Controllers
             if (reponseMesssage.IsSuccessStatusCode)
             {
                 var jsonData = await reponseMesssage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultAllBlogsWithAuthorDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultAllBlogsWithAuthorDto>>(jsonData).ToPagedList(page,5);
                 return View(values);
             }
             return View();

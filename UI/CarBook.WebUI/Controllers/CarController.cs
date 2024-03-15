@@ -24,7 +24,7 @@ namespace CarBook.WebUI.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultCarPricingWithCarDto>>(jsonData).ToPagedList(page,1);
+                var values = JsonConvert.DeserializeObject<List<ResultCarPricingWithCarDto>>(jsonData).ToPagedList(page,6);
                 return View(values);
             }
             return View();

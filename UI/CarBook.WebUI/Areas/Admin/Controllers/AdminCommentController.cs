@@ -3,6 +3,7 @@ using CarBook.Dto.CommentDtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using X.PagedList;
 
 namespace CarBook.WebUI.Areas.Admin.Controllers
 {
@@ -19,7 +20,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         }
 
         [Route("Index/{id}")]
-        public async Task<IActionResult> Index(int id)
+        public async Task<IActionResult> Index(int id, int page = 1)
         {
             ViewBag.Id = id;
             var client = _httpClientFactory.CreateClient();
@@ -27,7 +28,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultCommentDto>>(jsonData);
+                var values = JsonConvert.DeserializeObject<List<ResultCommentDto>>(jsonData).ToPagedList(page,10);
                 return View(values);
             }
             return View();

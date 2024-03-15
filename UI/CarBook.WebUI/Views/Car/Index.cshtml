@@ -32,7 +32,7 @@
             }
 
         </div>
-        <div class="pull-right">
+        <div class="d-flex justify-content-center">
             @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index",new{page}),
             new PagedListRenderOptionsBase{LiElementClasses = new string[] { "page-item" },PageClasses = new string[] { "page-link" },Display = PagedListDisplayMode.IfNeeded})
         </div>
